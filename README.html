@@ -1,0 +1,21 @@
+<h1 id="image-processing-api">Image Processing API</h1>
+<p>An Express server for resizing images on the Fly with saving the resized version for further requests.</p>
+<h2 id="getting-started">Getting started</h2>
+<ul>
+<li>Clone the repository<pre><code>git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/BassemSadaqah/image-processing-api
+</code></pre></li>
+<li>Install dependencies<pre><code>cd <span class="hljs-built_in">image</span>-processing-api
+npm install
+</code></pre></li>
+<li>Build and run the project<pre><code><span class="hljs-built_in">npm</span> start
+</code></pre></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<ul>
+<li>Navigate to <code>http://localhost:3000/api/images?filename={filename}&amp;width={width}&amp;height={height}</code></li>
+<li>Files are saved into <code>images/original</code> and a thumbnail of each image version will be generated on start at <code>images/thumbnail</code></li>
+<li>Original Photos could be accessed from <code>/images/imagename.jpg</code></li>
+<li>By default thumbnails will be created with 200x200 dimensions</li>
+<li>The default thumbnail dimensions could be changed by using <code>width</code> and <code>height</code> arguments when running the main node file<pre><code>npm <span class="hljs-built_in">run</span> start -- --<span class="hljs-built_in">width</span>=<span class="hljs-number">500</span> --<span class="hljs-built_in">height</span>=<span class="hljs-number">500</span>
+</code></pre></li>
+</ul>

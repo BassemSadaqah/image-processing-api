@@ -16,3 +16,7 @@ node_modules/
 .env.test.local
 .env.production.local
 .env.local
+
+#images subfolders except images/original
+images/*
+!images/original
