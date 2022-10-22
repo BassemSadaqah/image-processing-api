@@ -1,4 +1,4 @@
-import express,{Request,Response} from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import yargs from "yargs/yargs";
 import imagesRouter from "./api/images";
@@ -32,7 +32,7 @@ createThumbnails("images/original", "images/thumbnail", width_arg, height_arg, t
     throw new Error("Error when resizing to thumbnail images, make sure that you have provided a correct folder paths");
   });
 
-app.get("/", (req:Request, res:Response):void => {
+app.get("/", (req: Request, res: Response): void => {
   res.sendFile(path.join(__dirname, "../README.html"));
 });
 

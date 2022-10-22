@@ -1,10 +1,10 @@
-import express,{Request,Response} from "express";
+import express, { Request, Response } from "express";
 import resizeImage from "../utilities/resizeImage";
 const imagesRouter = express.Router();
 import { promises as fs, existsSync as fsExistsSync } from "fs";
 import path from "path";
 
-imagesRouter.get("/", (req:Request, res:Response):void => {
+imagesRouter.get("/", (req: Request, res: Response): void => {
   const width = parseInt(Number(req.query.width) as unknown as string);
   const height = parseInt(Number(req.query.height) as unknown as string);
   const filename: string = req.query.filename as string;
@@ -36,7 +36,7 @@ imagesRouter.get("/", (req:Request, res:Response):void => {
   }
 });
 
-async function resizeImageApi(filename: string, width: number, height: number):Promise<void> {
+async function resizeImageApi(filename: string, width: number, height: number): Promise<void> {
   const resizeDirName = `${width}x${height}`;
   if (fsExistsSync(`images/${resizeDirName}/${filename}`)) return;
   if (!fsExistsSync(`images/${resizeDirName}`)) {
