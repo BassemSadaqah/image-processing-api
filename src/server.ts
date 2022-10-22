@@ -1,4 +1,4 @@
-import express from "express";
+import express,{Request,Response} from "express";
 import path from "path";
 import yargs from "yargs/yargs";
 import imagesRouter from "./api/images";
@@ -16,12 +16,12 @@ const argv = yargs(process.argv.slice(2))
   })
   .parseSync();
 
-//Converting arguments to integers to ensure no decimal places exist in width or height values
-const width_arg = parseInt(argv.width as unknown as string);
-const height_arg = parseInt(argv.height as unknown as string);
+//Converting arguments to Numbers then to integers to ensure no decimal places exist in width or height values
+const width_arg = parseInt(Number(argv.width) as unknown as string);
+const height_arg = parseInt(Number(argv.height) as unknown as string);
 
 if (width_arg < 1 || height_arg < 1) {
-  console.log("width and height values should be greater than zero");
+  throw new Error("width and height values should be greater than zero");
   process.exit(0);
 }
 createThumbnails("images/original", "images/thumbnail", width_arg, height_arg, true)
@@ -29,10 +29,10 @@ createThumbnails("images/original", "images/thumbnail", width_arg, height_arg, t
     console.log("Thumbnail images exported successfuly to the provided directory");
   })
   .catch(() => {
-    console.log("Error when resizing to thumbnail images, make sure that you have provided a correct folder paths");
+    throw new Error("Error when resizing to thumbnail images, make sure that you have provided a correct folder paths");
   });
 
-app.get("/", (req, res) => {
+app.get("/", (req:Request, res:Response):void => {
   res.sendFile(path.join(__dirname, "../README.html"));
 });
 
